@@ -1,0 +1,1 @@
+![diagrama](QMP1.png)
