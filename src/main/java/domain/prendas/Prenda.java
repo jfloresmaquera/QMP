@@ -1,5 +1,7 @@
 package domain.prendas;
 
+import domain.Caracteristicas.*;
+
 public class Prenda {
     private TipoDePrenda tipoPrenda;
     private Material material;

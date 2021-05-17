@@ -19,7 +19,7 @@ public class Guardarropas {
         prendas.add(unaPrenda);
     }
 
-    public void guardarUltimaPrenda(BorradorPrenda unBorradorPrenda){
+    public void guardarUltimoBorradorPrenda(BorradorPrenda unBorradorPrenda){
         this.ultimoBorradorPrenda = ultimoBorradorPrenda;
     }
 }

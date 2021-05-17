@@ -1,4 +1,4 @@
-package domain.prendas;
+package domain.Caracteristicas;
 
 public class Color {
     private int nivelRojo;

@@ -1,4 +1,4 @@
-package domain.prendas;
+package domain.Caracteristicas;
 
 public enum Categoria {
     PARTE_SUPERIOR,

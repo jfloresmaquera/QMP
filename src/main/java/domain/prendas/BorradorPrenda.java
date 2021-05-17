@@ -1,5 +1,6 @@
 package domain.prendas;
 
+import domain.Caracteristicas.*;
 import domain.guardarropas.Guardarropas;
 
 import java.util.Objects;
@@ -44,7 +45,7 @@ public class BorradorPrenda {
     }
 
     public void guardarBorrador(){
-        Guardarropas.instance().guardarUltimaPrenda(this);
+        Guardarropas.instance().guardarUltimoBorradorPrenda(this);
     }
 
     private <T> void validarNoNulo (T parametro, String message) {

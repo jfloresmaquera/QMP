@@ -1,4 +1,4 @@
-package domain.prendas;
+package domain.Caracteristicas;
 
 import java.util.Objects;
 

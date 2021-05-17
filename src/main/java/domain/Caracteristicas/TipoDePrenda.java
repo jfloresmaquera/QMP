@@ -1,19 +1,22 @@
-package domain.prendas;
+package domain.Caracteristicas;
 
 public class TipoDePrenda {
-    private static TipoDePrenda zapato(){
+    public static TipoDePrenda zapatos(){
         return new TipoDePrenda(Categoria.CALZADO);
     }
-    private static TipoDePrenda chomba() {
+    public static TipoDePrenda zapatillas(){
+        return new TipoDePrenda(Categoria.CALZADO);
+    }
+    public static TipoDePrenda chomba(){
         return new TipoDePrenda(Categoria.PARTE_SUPERIOR);
     }
-    private static TipoDePrenda paniuelo(){
+    public static TipoDePrenda paniuelo(){
         return new TipoDePrenda(Categoria.ACCESORIOS);
     }
-    private static TipoDePrenda remera(){
+    public static TipoDePrenda remera(){
         return new TipoDePrenda(Categoria.PARTE_SUPERIOR);
     }
-    private static TipoDePrenda pantalon(){
+    public static TipoDePrenda pantalon(){
         return new TipoDePrenda(Categoria.PARTE_INFERIOR);
     }
 
