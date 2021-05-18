@@ -3,8 +3,8 @@ package domain.Uniformes;
 import domain.Caracteristicas.Color;
 import domain.Caracteristicas.TipoDePrenda;
 import domain.Caracteristicas.TipoMaterial;
-import domain.prendas.BorradorPrenda;
-import domain.prendas.Prenda;
+import domain.Prendas.BorradorPrenda;
+import domain.Prendas.Prenda;
 
 public class SastreSanJuan extends Sastre {
 

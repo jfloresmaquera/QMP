@@ -1,11 +1,12 @@
 package domain.guardarropas;
 
-import domain.prendas.BorradorPrenda;
-import domain.prendas.Prenda;
+import domain.Prendas.BorradorPrenda;
+import domain.Prendas.Prenda;
 
 import java.util.List;
 
 public class Guardarropas {
+
     private static final Guardarropas INSTANCE = new Guardarropas();
 
     private List<Prenda> prendas;
@@ -21,5 +22,9 @@ public class Guardarropas {
 
     public void guardarUltimoBorradorPrenda(BorradorPrenda unBorradorPrenda){
         this.ultimoBorradorPrenda = ultimoBorradorPrenda;
+    }
+
+    public List<Prenda> getPrendas() {
+        return prendas;
     }
 }

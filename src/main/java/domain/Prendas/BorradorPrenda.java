@@ -1,4 +1,4 @@
-package domain.prendas;
+package domain.Prendas;
 
 import domain.Caracteristicas.*;
 import domain.guardarropas.Guardarropas;
@@ -41,7 +41,9 @@ public class BorradorPrenda {
         validarNoNulo(colorPrincipal,"Falta ingresar color principal de material");
         Material auxMaterial = new Material(tipoMaterial,trama,colorPrincipal);
         if(colorSecundario!=null) auxMaterial.setColorSecundario(colorSecundario);
-        return new Prenda (tipoPrenda,auxMaterial);
+        Prenda prendaNueva = new Prenda (tipoPrenda,auxMaterial);
+        Guardarropas.instance().cargarPrenda(prendaNueva);
+        return prendaNueva;
     }
 
     public void guardarBorrador(){

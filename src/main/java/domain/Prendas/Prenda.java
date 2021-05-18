@@ -1,4 +1,4 @@
-package domain.prendas;
+package domain.Prendas;
 
 import domain.Caracteristicas.*;
 
@@ -9,10 +9,6 @@ public class Prenda {
     Prenda(TipoDePrenda tipoPrenda, Material material) {
         this.tipoPrenda = tipoPrenda;
         this.material = material;
-    }
-
-    public Categoria categoria() {
-        return tipoPrenda.getCategoria();
     }
 
     public TipoMaterial getTipoMaterial() {
@@ -29,5 +25,13 @@ public class Prenda {
 
     public Color getColorSecundario() {
         return material.getColorSecundario();
+    }
+
+    public Categoria getCategoria(){
+        return tipoPrenda.getCategoria();
+    }
+
+    public boolean temperaturaAceptable(double unaTemp) {
+        return tipoPrenda.temperaturaAceptable(unaTemp);
     }
 }

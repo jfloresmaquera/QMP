@@ -1,6 +1,4 @@
-package domain.prendas;
-
-import domain.prendas.Prenda;
+package domain.Prendas;
 
 public class Uniforme {
     private Prenda prendaSuperior;
