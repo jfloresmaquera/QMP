@@ -1,4 +1,4 @@
-package domain.ApiClima;
+package ApiClima;
 
 import java.util.*;
 

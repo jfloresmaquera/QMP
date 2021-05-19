@@ -1,4 +1,4 @@
-package domain.Uniformes;
+package domain.Sastre;
 
 import domain.Caracteristicas.Color;
 import domain.Caracteristicas.TipoDePrenda;

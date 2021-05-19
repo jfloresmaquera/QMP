@@ -27,4 +27,8 @@ public class Guardarropas {
     public List<Prenda> getPrendas() {
         return prendas;
     }
+
+    public Atuendo conseguirAtuendoSugerido(double temp){
+        return new Atuendo(temp);
+    }
 }

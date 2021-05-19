@@ -13,12 +13,15 @@ public class Atuendo {
     Optional<Prenda> inferior;
     Optional<Prenda> accesorio;
     Optional<Prenda> calzado;
-    public Atuendo generarSugerenciaDeAtuendo(double temp) {
+
+    Atuendo(double temp){
+        generarSugerenciaDeAtuendo(temp);
+    }
+    public void generarSugerenciaDeAtuendo(double temp) {
         superior = unaQueCumple(Categoria.PARTE_SUPERIOR,temp);
         inferior =  unaQueCumple(Categoria.PARTE_INFERIOR,temp);
         accesorio =  unaQueCumple(Categoria.ACCESORIOS,temp);
         calzado =  unaQueCumple(Categoria.CALZADO,temp);
-        return this;
     }
 
     public Optional<Prenda> unaQueCumple(Categoria unaCat, double temp) {

@@ -1,4 +1,4 @@
-package domain.Uniformes;
+package domain.Sastre;
 
 import domain.Prendas.Prenda;
 import domain.Prendas.Uniforme;
