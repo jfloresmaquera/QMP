@@ -1,5 +1,6 @@
 package domain.guardarropas;
 
+import ApiClima.Clima;
 import domain.Caracteristicas.Categoria;
 import domain.Prendas.Prenda;
 
@@ -14,18 +15,18 @@ public class Atuendo {
     Optional<Prenda> accesorio;
     Optional<Prenda> calzado;
 
-    Atuendo(double temp){
-        generarSugerenciaDeAtuendo(temp);
+    Atuendo(){
+        generarSugerenciaDeAtuendo();
     }
-    public void generarSugerenciaDeAtuendo(double temp) {
-        superior = unaQueCumple(Categoria.PARTE_SUPERIOR,temp);
-        inferior =  unaQueCumple(Categoria.PARTE_INFERIOR,temp);
-        accesorio =  unaQueCumple(Categoria.ACCESORIOS,temp);
-        calzado =  unaQueCumple(Categoria.CALZADO,temp);
+    public void generarSugerenciaDeAtuendo() {
+        superior = unaQueCumple(Categoria.PARTE_SUPERIOR);
+        inferior =  unaQueCumple(Categoria.PARTE_INFERIOR);
+        accesorio =  unaQueCumple(Categoria.ACCESORIOS);
+        calzado =  unaQueCumple(Categoria.CALZADO);
     }
 
-    public Optional<Prenda> unaQueCumple(Categoria unaCat, double temp) {
-        return obtenerListaDeCategoria(unaCat).stream().filter(prenda -> prenda.temperaturaAceptable(temp)).collect(Collectors.toList()).stream().findAny();
+    public Optional<Prenda> unaQueCumple(Categoria unaCat) {
+        return obtenerListaDeCategoria(unaCat).stream().filter(prenda -> prenda.temperaturaAceptable(Clima.instance().getTemperatura())).collect(Collectors.toList()).stream().findAny();
     }
 
     public List<Prenda> obtenerListaDeCategoria(Categoria categoria){
@@ -33,4 +34,3 @@ public class Atuendo {
     }
 
 }
-

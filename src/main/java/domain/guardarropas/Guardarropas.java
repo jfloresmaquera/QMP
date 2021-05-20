@@ -28,7 +28,7 @@ public class Guardarropas {
         return prendas;
     }
 
-    public Atuendo conseguirAtuendoSugerido(double temp){
-        return new Atuendo(temp);
+    public Atuendo conseguirAtuendoSugerido(){
+        return new Atuendo();
     }
 }
