@@ -1,11 +1,11 @@
 package domain;
 
-import ApiClima.ApiClima;
-import ApiClima.Clima;
+import ApiClima.ServicioMeteorologico;
+import ApiClima.ProvedorClima;
 
 public class Administrador {
-    public void cambiarServicioObtencionClima(ApiClima unaAPI) {
-        Clima.instance().setUnaAPIClima(unaAPI);
+    public void cambiarServicioObtencionClima(ServicioMeteorologico unaAPI) {
+        ProvedorClima.instance().setServicioMeteorologico(unaAPI);
     }
 
 }

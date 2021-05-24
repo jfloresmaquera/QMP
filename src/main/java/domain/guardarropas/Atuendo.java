@@ -1,6 +1,6 @@
 package domain.guardarropas;
 
-import ApiClima.Clima;
+import ApiClima.ProvedorClima;
 import domain.Caracteristicas.Categoria;
 import domain.Prendas.Prenda;
 
@@ -26,7 +26,7 @@ public class Atuendo {
     }
 
     public Optional<Prenda> unaQueCumple(Categoria unaCat) {
-        return obtenerListaDeCategoria(unaCat).stream().filter(prenda -> prenda.temperaturaAceptable(Clima.instance().getTemperatura())).collect(Collectors.toList()).stream().findAny();
+        return obtenerListaDeCategoria(unaCat).stream().filter(prenda -> prenda.temperaturaAceptable(ProvedorClima.instance().getTemperatura())).collect(Collectors.toList()).stream().findAny();
     }
 
     public List<Prenda> obtenerListaDeCategoria(Categoria categoria){
