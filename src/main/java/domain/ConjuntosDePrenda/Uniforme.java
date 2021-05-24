@@ -1,4 +1,6 @@
-package domain.Prendas;
+package domain.ConjuntosDePrenda;
+
+import domain.Prendas.Prenda;
 
 public class Uniforme {
     private Prenda prendaSuperior;

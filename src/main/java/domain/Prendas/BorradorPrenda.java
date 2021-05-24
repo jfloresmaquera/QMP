@@ -42,12 +42,11 @@ public class BorradorPrenda {
         Material auxMaterial = new Material(tipoMaterial,trama,colorPrincipal);
         if(colorSecundario!=null) auxMaterial.setColorSecundario(colorSecundario);
         Prenda prendaNueva = new Prenda (tipoPrenda,auxMaterial);
-        Guardarropas.instance().cargarPrenda(prendaNueva);
         return prendaNueva;
     }
 
-    public void guardarBorrador(){
-        Guardarropas.instance().guardarUltimoBorradorPrenda(this);
+    public void guardarBorrador(Guardarropas unGuardarropas){
+        unGuardarropas.guardarUltimoBorradorPrenda(this);
     }
 
     private <T> void validarNoNulo (T parametro, String message) {

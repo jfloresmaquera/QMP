@@ -1,22 +1,16 @@
 package domain.guardarropas;
 
+import domain.ConjuntosDePrenda.Atuendo;
 import domain.Prendas.BorradorPrenda;
 import domain.Prendas.Prenda;
 
 import java.util.List;
 
 public class Guardarropas {
-
-    private static final Guardarropas INSTANCE = new Guardarropas();
-
     private List<Prenda> prendas;
     private BorradorPrenda ultimoBorradorPrenda;
 
-    public static Guardarropas instance(){
-        return INSTANCE;
-    }
-
-    public void cargarPrenda(Prenda unaPrenda){
+    public void guardarPrenda(Prenda unaPrenda){
         prendas.add(unaPrenda);
     }
 
@@ -26,9 +20,5 @@ public class Guardarropas {
 
     public List<Prenda> getPrendas() {
         return prendas;
-    }
-
-    public Atuendo conseguirAtuendoSugerido(){
-        return new Atuendo();
     }
 }

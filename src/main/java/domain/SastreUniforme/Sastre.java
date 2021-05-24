@@ -1,7 +1,7 @@
-package domain.Sastre;
+package domain.SastreUniforme;
 
 import domain.Prendas.Prenda;
-import domain.Prendas.Uniforme;
+import domain.ConjuntosDePrenda.Uniforme;
 
 abstract public class Sastre {
     public Uniforme fabricarUniforme(){
