@@ -5,14 +5,13 @@ import domain.Prendas.AccionAPrenda;
 import domain.Prendas.EstadoSugerencia;
 import domain.Prendas.Prenda;
 import domain.Prendas.SugerenciaPrenda;
-import domain.Usuario.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuardarropasCompartido extends Guardarropas{
     //Uso herencia ya que Guardarropas nunca va a pasar a ser compartido: o es propio o es compartido
-    List<SugerenciaPrenda> sugerencias;
+    private List<SugerenciaPrenda> sugerencias;
 
     public GuardarropasCompartido() {
         super();
@@ -29,10 +28,10 @@ public class GuardarropasCompartido extends Guardarropas{
 
     public void cambiarEstadoSugerencia(int posicion, EstadoSugerencia nuevoEstado){
         sugerencias.get(posicion).cambiarEstado(nuevoEstado);
-        if(nuevoEstado.equals(EstadoSugerencia.ACEPTADO)) realizarSugerencia(sugerencias.get(posicion));
+        if(nuevoEstado.equals(EstadoSugerencia.ACEPTADO)) concretarSugerencia(sugerencias.get(posicion));
     }
 
-    public void realizarSugerencia(SugerenciaPrenda sugerencia){
+    public void concretarSugerencia(SugerenciaPrenda sugerencia){
         if(sugerencia.getAccion().equals(AccionAPrenda.AGREGAR)) this.agregarPrenda(sugerencia.getPrenda());
         if(sugerencia.getAccion().equals(AccionAPrenda.QUITAR)) this.quitarPrenda(sugerencia.getPrenda());
     }
@@ -40,7 +39,7 @@ public class GuardarropasCompartido extends Guardarropas{
     public void deshacerSugerencia(int indexSugerencia){
         SugerenciaPrenda sugerenciaADeshacer = sugerencias.get(indexSugerencia);
         if(!sugerenciaADeshacer.getEstado().equals(EstadoSugerencia.ACEPTADO)) throw  new DomainGuardarropa("La sugerencia no estaba aceptada");
-        sugerenciaADeshacer.setEstado(EstadoSugerencia.ENPROCESO);
+        sugerenciaADeshacer.cambiarEstado(EstadoSugerencia.ENPROCESO);
         if(sugerenciaADeshacer.getAccion().equals(AccionAPrenda.AGREGAR)) this.quitarPrenda(sugerenciaADeshacer.getPrenda());
         if(sugerenciaADeshacer.getAccion().equals(AccionAPrenda.QUITAR)) this.agregarPrenda(sugerenciaADeshacer.getPrenda());
     }

@@ -1,9 +1,9 @@
 package domain.Prendas;
 
 public class SugerenciaPrenda {
-    Prenda prenda;
-    AccionAPrenda accion;
-    EstadoSugerencia estado;
+    private Prenda prenda;
+    private AccionAPrenda accion;
+    private EstadoSugerencia estado;
 
     public SugerenciaPrenda(Prenda prenda, AccionAPrenda accion, EstadoSugerencia estadoAceptado) {
         this.prenda = prenda;
@@ -25,9 +25,5 @@ public class SugerenciaPrenda {
 
     public EstadoSugerencia getEstado() {
         return estado;
-    }
-
-    public void setEstado(EstadoSugerencia estado) {
-        this.estado = estado;
     }
 }
