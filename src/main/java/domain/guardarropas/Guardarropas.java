@@ -1,5 +1,6 @@
 package domain.guardarropas;
 
+import Exceptions.DomainGuardarropa;
 import domain.ConjuntosDePrenda.Atuendo;
 import domain.Prendas.BorradorPrenda;
 import domain.Prendas.Prenda;
@@ -17,8 +18,13 @@ public class Guardarropas {
         this.prendas = new ArrayList<Prenda>();
     }
 
-    public void guardarPrenda(Prenda unaPrenda){
+    public void agregarPrenda(Prenda unaPrenda){
         prendas.add(unaPrenda);
+    }
+
+    public void quitarPrenda(Prenda unaPrenda){
+        if(!prendas.contains(unaPrenda)) throw new DomainGuardarropa("Esta prenda no esta en el guardarropas");
+        prendas.remove(unaPrenda);
     }
 
     public void guardarUltimoBorradorPrenda(BorradorPrenda unBorradorPrenda){

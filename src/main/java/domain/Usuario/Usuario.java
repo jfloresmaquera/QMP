@@ -1,6 +1,10 @@
 package domain.Usuario;
 
-import Exceptions.GuardarropasNoEsPropio;
+import Exceptions.DomainGuardarropa;
+import domain.Prendas.AccionAPrenda;
+import domain.Prendas.EstadoSugerencia;
+import domain.Prendas.Prenda;
+import domain.Prendas.SugerenciaPrenda;
 import domain.guardarropas.Guardarropas;
 import domain.guardarropas.GuardarropasCompartido;
 
@@ -32,7 +36,28 @@ public class Usuario {
         otrosGuardarropasCompartidos.add(unGuardarrodaCompartido);
     }
 
-    public void otorgarAccesoGuardarropas(Usuario unUsuario, Guardarropas unGuardarropas){
-        if(misGuardarropas.contains(unGuardarropas)) throw new GuardarropasNoEsPropio("El guardarropas pasado por parametro no es de propiedad del Usuario");
+    public void hacerSugerenciaPrendaEnGuardarropas(Prenda unaPrenda, GuardarropasCompartido unGuardarropasComp, AccionAPrenda unaAccion){
+        if(!otrosGuardarropasCompartidos.contains(unGuardarropasComp)) throw new DomainGuardarropa("Usuario no tiene acceso a este guardarropas");
+        unGuardarropasComp.agregarSugerencia(unaPrenda,unaAccion);
+    }
+
+    public List<SugerenciaPrenda> verSugerenciasDeGuardarropas(GuardarropasCompartido miGuardarropasComp){
+        this.controlarGuardarropasCompartidoPropio(miGuardarropasComp);
+        return miGuardarropasComp.getSugerencias();
+    }
+
+    public void analisisDeSugerencia(GuardarropasCompartido miGuardarropaComp, int posicionDeSugerencia, EstadoSugerencia nuevoEstado){
+        this.controlarGuardarropasCompartidoPropio(miGuardarropaComp);
+        //si recibo por parametro una sugerencia, deberia hacer el control de existencia del mismo dentro de la lista de sugerencias del guardarropas
+        miGuardarropaComp.cambiarEstadoSugerencia(posicionDeSugerencia, nuevoEstado);
+    }
+
+    public void deshacerSugerencia(GuardarropasCompartido miGuardarropaComp, int posicionDeSugerencia){
+        this.controlarGuardarropasCompartidoPropio(miGuardarropaComp);
+        miGuardarropaComp.deshacerSugerencia(posicionDeSugerencia);
+    }
+
+    public void controlarGuardarropasCompartidoPropio(GuardarropasCompartido miGuardarropaComp){
+        if(!misGuardarropasCompartidos.contains(miGuardarropaComp)) throw new DomainGuardarropa("Usuario no es propietario del guardarropas compartido");
     }
 }
