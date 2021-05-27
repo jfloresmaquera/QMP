@@ -1,10 +1,8 @@
 package domain.guardarropas;
 
-import Exceptions.DomainGuardarropa;
-import domain.ConjuntosDePrenda.Atuendo;
+import Exceptions.DomainExceptioGuardarropa;
 import domain.Prendas.BorradorPrenda;
 import domain.Prendas.Prenda;
-import domain.Usuario.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class Guardarropas {
     }
 
     public void quitarPrenda(Prenda unaPrenda){
-        if(!prendas.contains(unaPrenda)) throw new DomainGuardarropa("Esta prenda no esta en el guardarropas");
+        if(!prendas.contains(unaPrenda)) throw new DomainExceptioGuardarropa("Esta prenda no esta en el guardarropas");
         prendas.remove(unaPrenda);
     }
 

@@ -1,16 +1,12 @@
 package domain.guardarropas;
 
-import Exceptions.DomainGuardarropa;
-import domain.Prendas.AccionAPrenda;
-import domain.Prendas.EstadoSugerencia;
-import domain.Prendas.Prenda;
-import domain.Prendas.SugerenciaPrenda;
+import Exceptions.DomainExceptioGuardarropa;
+import domain.Prendas.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuardarropasCompartido extends Guardarropas{
-    //Uso herencia ya que Guardarropas nunca va a pasar a ser compartido: o es propio o es compartido
     private List<SugerenciaPrenda> sugerencias;
 
     public GuardarropasCompartido() {
@@ -18,29 +14,20 @@ public class GuardarropasCompartido extends Guardarropas{
         sugerencias = new ArrayList<SugerenciaPrenda>();
     }
 
-    public void agregarSugerencia(Prenda unaPrenda, AccionAPrenda unaSugerencia){
-        sugerencias.add(new SugerenciaPrenda(unaPrenda,unaSugerencia, EstadoSugerencia.ENPROCESO));
+    public void agregarSugerenciaAgregar(Prenda unaPrenda){
+        sugerencias.add(new SugerenciaPrendaAgregar(unaPrenda, EstadoSugerencia.ENPROCESO));
+    }
+
+    public void agregarSugerenciaQuitar(Prenda unaPrenda){
+        sugerencias.add(new SugerenciaPrendaQuitar(unaPrenda, EstadoSugerencia.ENPROCESO));
     }
 
     public List<SugerenciaPrenda> getSugerencias(){
         return sugerencias;
     }
 
-    public void cambiarEstadoSugerencia(int posicion, EstadoSugerencia nuevoEstado){
-        sugerencias.get(posicion).cambiarEstado(nuevoEstado);
-        if(nuevoEstado.equals(EstadoSugerencia.ACEPTADO)) concretarSugerencia(sugerencias.get(posicion));
-    }
 
-    public void concretarSugerencia(SugerenciaPrenda sugerencia){
-        if(sugerencia.getAccion().equals(AccionAPrenda.AGREGAR)) this.agregarPrenda(sugerencia.getPrenda());
-        if(sugerencia.getAccion().equals(AccionAPrenda.QUITAR)) this.quitarPrenda(sugerencia.getPrenda());
-    }
-
-    public void deshacerSugerencia(int indexSugerencia){
-        SugerenciaPrenda sugerenciaADeshacer = sugerencias.get(indexSugerencia);
-        if(!sugerenciaADeshacer.getEstado().equals(EstadoSugerencia.ACEPTADO)) throw  new DomainGuardarropa("La sugerencia no estaba aceptada");
-        sugerenciaADeshacer.cambiarEstado(EstadoSugerencia.ENPROCESO);
-        if(sugerenciaADeshacer.getAccion().equals(AccionAPrenda.AGREGAR)) this.quitarPrenda(sugerenciaADeshacer.getPrenda());
-        if(sugerenciaADeshacer.getAccion().equals(AccionAPrenda.QUITAR)) this.agregarPrenda(sugerenciaADeshacer.getPrenda());
+    public void controlarExistenciaSugerencia(SugerenciaPrenda unaSugerencia){
+        if(!sugerencias.contains(unaSugerencia)) throw new DomainExceptioGuardarropa("La sugerencia no existe en el guardarropas");
     }
 }

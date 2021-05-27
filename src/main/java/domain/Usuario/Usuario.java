@@ -1,8 +1,6 @@
 package domain.Usuario;
 
-import Exceptions.DomainGuardarropa;
-import domain.Prendas.AccionAPrenda;
-import domain.Prendas.EstadoSugerencia;
+import Exceptions.DomainExceptioGuardarropa;
 import domain.Prendas.Prenda;
 import domain.Prendas.SugerenciaPrenda;
 import domain.guardarropas.Guardarropas;
@@ -36,9 +34,19 @@ public class Usuario {
         otrosGuardarropasCompartidos.add(unGuardarrodaCompartido);
     }
 
-    public void hacerSugerenciaPrendaEnGuardarropas(Prenda unaPrenda, GuardarropasCompartido unGuardarropasComp, AccionAPrenda unaAccion){
-        if(!otrosGuardarropasCompartidos.contains(unGuardarropasComp)) throw new DomainGuardarropa("Usuario no tiene acceso a este guardarropas");
-        unGuardarropasComp.agregarSugerencia(unaPrenda,unaAccion);
+    public void compartirGuardarropaCon(Usuario usuario, GuardarropasCompartido miGuardarropasCompartido){
+        controlarGuardarropasCompartidoPropio(miGuardarropasCompartido);
+        usuario.agregarGuardarropaCompartido(miGuardarropasCompartido);
+    }
+
+    public void hacerSugerenciaPrendaAgregarEnGuardarropas(Prenda unaPrenda, GuardarropasCompartido unGuardarropasComp){
+        controlarGuardarropasCompartidoConUsuario(unGuardarropasComp);
+        unGuardarropasComp.agregarSugerenciaAgregar(unaPrenda);
+    }
+
+    public void hacerSugerenciaPrendaQuitarEnGuardarropas(Prenda unaPrenda, GuardarropasCompartido unGuardarropasComp){
+        controlarGuardarropasCompartidoConUsuario(unGuardarropasComp);
+        unGuardarropasComp.agregarSugerenciaQuitar(unaPrenda);
     }
 
     public List<SugerenciaPrenda> verSugerenciasDeGuardarropas(GuardarropasCompartido miGuardarropasComp){
@@ -46,18 +54,26 @@ public class Usuario {
         return miGuardarropasComp.getSugerencias();
     }
 
-    public void analisisDeSugerencia(GuardarropasCompartido miGuardarropaComp, int posicionDeSugerencia, EstadoSugerencia nuevoEstado){
+    public void aceptarSugerencia(GuardarropasCompartido miGuardarropaComp, SugerenciaPrenda unaSugerencia){
         this.controlarGuardarropasCompartidoPropio(miGuardarropaComp);
-        //si recibo por parametro una sugerencia, deberia hacer el control de existencia del mismo dentro de la lista de sugerencias del guardarropas
-        miGuardarropaComp.cambiarEstadoSugerencia(posicionDeSugerencia, nuevoEstado);
+        unaSugerencia.aceptarSugerencia(miGuardarropaComp);
     }
 
-    public void deshacerSugerencia(GuardarropasCompartido miGuardarropaComp, int posicionDeSugerencia){
+    public void rechazarSugerencia(GuardarropasCompartido miGuardarropaComp, SugerenciaPrenda unaSugerencia){
         this.controlarGuardarropasCompartidoPropio(miGuardarropaComp);
-        miGuardarropaComp.deshacerSugerencia(posicionDeSugerencia);
+        unaSugerencia.rechazarSugerencia(miGuardarropaComp);
+    }
+
+    public void deshacerSugerencia(GuardarropasCompartido miGuardarropaComp, SugerenciaPrenda unaSugerencia){
+        this.controlarGuardarropasCompartidoPropio(miGuardarropaComp);
+        unaSugerencia.deshacerSugerencia(miGuardarropaComp);
     }
 
     public void controlarGuardarropasCompartidoPropio(GuardarropasCompartido miGuardarropaComp){
-        if(!misGuardarropasCompartidos.contains(miGuardarropaComp)) throw new DomainGuardarropa("Usuario no es propietario del guardarropas compartido");
+        if(!misGuardarropasCompartidos.contains(miGuardarropaComp)) throw new DomainExceptioGuardarropa("Usuario no es propietario del guardarropas compartido");
+    }
+
+    public void controlarGuardarropasCompartidoConUsuario(GuardarropasCompartido unGuardarropasComp){
+        if(!otrosGuardarropasCompartidos.contains(unGuardarropasComp)) throw new DomainExceptioGuardarropa("Usuario no tiene acceso a este guardarropas");
     }
 }
